@@ -1,3 +1,4 @@
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -11,6 +12,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class CalcTest {
 
@@ -58,5 +61,16 @@ public class CalcTest {
         logWriter.append("World!!!");
         logWriter.flush();
         logWriter.close();
+    }
+
+    @Test
+    public void givenOptional_whenMapWorks_thenCorrect2() {
+        String name = "baeldung";
+        Optional<String> nameOptional = Optional.of(name);
+
+        int len = nameOptional
+                .map(String::length)
+                .orElse(0);
+        Assert.assertEquals(8, len);
     }
 }
